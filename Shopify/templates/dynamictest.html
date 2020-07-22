@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            var $catVar = $("#ctg");
+                $sub_ctgVar = $("#sctg");
+
+                $options=$sub_ctgVar.find('option');
+                $catVar.on('change',function(){
+                    $sub_ctgVar.html($options.filter('[value="'+this.value+'"]'));
+                }).trigger('change');
+        }
+        );
+    </script>
+</head>
+<body>
+    <select name="cat" id="ctg">
+        {%for c in ctg%}
+        <option value="{{c.id}}">{{c.name}}</option>
+        {%endfor%}
+    </select>
+    {%for s in sctg%}
+        <p>{{s.catagory_name_id}}</p>
+    {%endfor%}
+    <select name="scat" id="sctg">
+        {%for s in sctg%}
+        <option value="{{s.catagory_name_id}}">{{s.sub_name}}</option>
+        {%endfor%}
+    </select>
+</body>
+</html>
