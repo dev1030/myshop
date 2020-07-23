@@ -11,7 +11,7 @@ import json
 def get_features(request):
     id = request.GET.get('id','')
     cat = categorie.objects.get(pk=id) 
-    result = list(sub_categorie.objects.filter(catagory_name_id=cat).values('id', 'name')) 
+    result = list(sub_categorie.objects.filter(catagory_name_id=cat).values('id', 'sub_name'))
     print(result)
     return HttpResponse(json.dumps(result), content_type="application/json") 
 
@@ -54,7 +54,7 @@ def register(request):
         pass2 = request.POST['pass2']
 
         user = User.objects.create_user(username=username,password = pass1, email=email, first_name = first_name, last_name=last_name)
-        user.save();
+        user.save()
         print('user created')
         return redirect('/')
     return render(request,'login.html')
@@ -70,4 +70,4 @@ def catDynamic(request):
 
 def sub_ctg(request):
         sctg = sub_categorie.objects.all()
-        return render(request, 'admin/categories.html',{'sctg':sctg})
+        return render(request, 'admin/mystore/change_form.html',{'sctg':sctg})

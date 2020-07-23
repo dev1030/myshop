@@ -8,7 +8,7 @@ admin.site.site_header = 'MyShop Administration'
 
 class ProductsAdmin(admin.ModelAdmin):
 
-    change_form_template = 'admin/categories.html'
+    change_form_template = 'admin/mystore/change_form.html'
 
 
 admin.site.register(sub_categorie)

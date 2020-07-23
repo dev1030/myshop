@@ -20,5 +20,5 @@ class Products(models.Model):
     Product_Name = models.CharField(max_length=100)
     price = models.FloatField()
     Description = models.TextField()
-    ctg = models.ForeignKey(categorie, on_delete=models.CASCADE,blank = False,  default=1)
-    sub_category = models.ForeignKey(sub_categorie, on_delete=models.CASCADE,default=1)
+    ctg = models.ForeignKey(categorie, on_delete=models.CASCADE, blank=False, default=1)
+    sub_category = models.ForeignKey(sub_categorie, on_delete=models.CASCADE, null=True, blank=True)
