@@ -24,6 +24,7 @@ class Products(models.Model):
     Description = models.TextField()
     ctg = models.ForeignKey(categorie, on_delete=models.CASCADE, blank=False, default=1)
     sub_category = models.ForeignKey(sub_categorie, on_delete=models.CASCADE, null=True, blank=True)
+<<<<<<< HEAD
 
     def __str__(self):
         return self.Product_Name
@@ -59,3 +60,5 @@ class ShippingAddress(models.Model):
     state = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
     date_added = models.DateTimeField(auto_now_add=True)
+=======
+>>>>>>> bd916221408963f1925b220ac739be26d2903adc

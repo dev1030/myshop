@@ -108,6 +108,7 @@ def logout(request):
 
 def sub_ctg(request):
         sctg = sub_categorie.objects.all()
+<<<<<<< HEAD
         return render(request, 'admin/mystore/change_form.html',{'sctg':sctg})
 
 def product_by_cat(request, cname, sid):
@@ -139,3 +140,6 @@ def updateItem(request):
         orderItem.delete()
 
     return JsonResponse('Item was added', safe=False)
+=======
+        return render(request, 'admin/mystore/change_form.html',{'sctg':sctg})
+>>>>>>> bd916221408963f1925b220ac739be26d2903adc
