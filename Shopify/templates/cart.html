@@ -22,7 +22,28 @@
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/ico/apple-touch-icon-144-precomposed.png'%}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/ico/apple-touch-icon-114-precomposed.png'%}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/ico/apple-touch-icon-72-precomposed.png'%}">
-    <link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png">
+	<script type="text/javascript">
+		var user = '{{request.user}}'
+
+		function getToken(name) {
+			let cookieValue = null;
+			if (document.cookie && document.cookie !== '') {
+				const cookies = document.cookie.split(';');
+				for (let i = 0; i < cookies.length; i++) {
+					const cookie = cookies[i].trim();
+					// Does this cookie string begin with the name we want?
+					if (cookie.substring(0, name.length + 1) === (name + '=')) {
+						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+						break;
+					}
+				}
+			}
+			return cookieValue;
+		}
+		const csrftoken = getToken('csrftoken');
+
+	</script>
 </head><!--/head-->
 
 <body>
@@ -89,7 +110,7 @@
 							<ul class="nav navbar-nav">
 								<li><a href=""><i class="fa fa-user"></i> Account</a></li>
 								<li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
-								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+								<li><a href="../checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 								<li><a href="cart.html" class="active"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 								<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
 							</ul>
@@ -165,82 +186,38 @@
 						</tr>
 					</thead>
 					<tbody>
+						{%for item in items%}
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="{% static 'images/cart/one.png'%}" alt=""></a>
+								<a href=""><img class="img_size" src="{{item.Product.image.url}}" alt=""></a>
 							</td>
+							<style>
+								.img_size{
+								height: 50px;
+								width: auto;
+							}</style>
 							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
+								<h4><a href="">{{item.Product.Product_Name}}</a></h4>
+								<p>Web ID: {{item.Product.id}}</p>
 							</td>
 							<td class="cart_price">
-								<p>$59</p>
+								<p>{{item.Product.price|floatformat:2}}</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
+									<a data-product={{item.Product.id}} data-action="add" class="cart_quantity_up update-cart" href=""> + </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="{{item.Quantity}}" autocomplete="off" size="2">
+									<a data-product={{item.Product.id}} data-action="remove" class="cart_quantity_down update-cart" href=""> - </a>
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
+								<p class="cart_total_price">{{item.get_total}}</p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
-
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="{% static 'images/cart/two.png'%}" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="{% static 'images/cart/three.png'%}" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
+						{%endfor%}
 					</tbody>
 				</table>
 			</div>
@@ -311,10 +288,9 @@
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li>Cart Sub Total <span>$59</span></li>
-							<li>Eco Tax <span>$2</span></li>
+							<li>Cart Sub Total <span>{{order.get_cart_total}}</span></li>
 							<li>Shipping Cost <span>Free</span></li>
-							<li>Total <span>$61</span></li>
+							<li>Total <span>{{order.get_cart_total}}</span></li>
 						</ul>
 							<a class="btn btn-default update" href="">Update</a>
 							<a class="btn btn-default check_out" href="">Check Out</a>
@@ -488,6 +464,7 @@
 	<script src="{% static 'js/bootstrap.min.js'%}"></script>
 	<script src="{% static 'js/jquery.scrollUp.min.js'%}"></script>
     <script src="{% static 'js/jquery.prettyPhoto.js'%}"></script>
-    <script src="{% static 'js/main.js'%}"></script>
+	<script src="{% static 'js/main.js'%}"></script>
+	<script src="{% static 'js/cart.js'%}"></script>
 </body>
 </html>
