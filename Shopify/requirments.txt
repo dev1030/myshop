@@ -1,13 +1,5 @@
-<<<<<<< HEAD
 asgiref==3.2.10
 Django==3.0.8
 mysqlclient==2.0.1
 pytz==2020.1
 sqlparse==0.3.1
-=======
-asgiref==3.2.10
-Django==3.0.8
-mysqlclient==2.0.1
-pytz==2020.1
-sqlparse==0.3.1
->>>>>>> bd916221408963f1925b220ac739be26d2903adc
