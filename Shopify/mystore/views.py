@@ -33,17 +33,13 @@ def cart(request):
     contex = {'items':items, 'order':order}    
     return render(request, 'cart.html', contex)
 
-def Product_details(request):
+
+def Product_details(request, pk):
     ctgs = categorie.objects.all()
     sctgs = sub_categorie.objects.all()
-    data =json.loads(request.body)
-    ProductId = int(data['ProductId'])
-    action = data['action']
-    print(action)
-    print(ProductId)
-    Product = Products.objects.get(id=ProductId)
-    print(Product)
-    return render(request, 'product-details.html',{'ctgs':ctgs,'sctgs':sctgs, 'Product':Product})
+    action = request.GET.get("action", None)
+    Product = Products.objects.get(id=pk)
+    return render(request, 'product-details.html', {'ctgs': ctgs, 'sctgs': sctgs, 'Product': Product})
 
 
 
@@ -108,7 +104,6 @@ def logout(request):
 
 def sub_ctg(request):
         sctg = sub_categorie.objects.all()
-<<<<<<< HEAD
         return render(request, 'admin/mystore/change_form.html',{'sctg':sctg})
 
 def product_by_cat(request, cname, sid):
@@ -140,6 +135,3 @@ def updateItem(request):
         orderItem.delete()
 
     return JsonResponse('Item was added', safe=False)
-=======
-        return render(request, 'admin/mystore/change_form.html',{'sctg':sctg})
->>>>>>> bd916221408963f1925b220ac739be26d2903adc

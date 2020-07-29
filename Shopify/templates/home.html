@@ -19,7 +19,7 @@
                                     <h2>{{pro.price}}</h2>
                                     <p>{{pro.Product_Name}}</p>
                                     <a href="#" data-product={{pro.id}} data-action="add" class="btn btn-default add-to-cart update-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    <a href="#" data-product={{pro.id}} data-action="add" class="btn btn-default add-to-cart view-product">Show</a>
+                                    <a href="{% url 'product-details' pk=pro.id %}?action=add" class="btn btn-default add-to-cart">Show</a>
                                 </div>
                             </div>
                     </div>
