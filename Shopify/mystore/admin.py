@@ -17,4 +17,5 @@ admin.site.register(Products,ProductsAdmin)
 admin.site.register(Order)
 admin.site.register(OrderItem)
 admin.site.register(ShippingAddress)
+admin.site.register(brand)
 

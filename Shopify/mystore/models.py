@@ -17,6 +17,12 @@ class sub_categorie(models.Model):
     def __str__(self):
         return self.sub_name
 
+class brand(models.Model):
+    name = models.CharField(max_length=100, default='')
+
+    def __str__(self):
+        return self.name
+
 class Products(models.Model):
     Product_Name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='img', null = False, default=1)
@@ -24,7 +30,7 @@ class Products(models.Model):
     Description = models.TextField()
     ctg = models.ForeignKey(categorie, on_delete=models.CASCADE, blank=False, default=1)
     sub_category = models.ForeignKey(sub_categorie, on_delete=models.CASCADE, null=True, blank=True)
-<<<<<<< HEAD
+    brand_name = models.ForeignKey(brand, on_delete=models.CASCADE, null= True, blank = True)
 
     def __str__(self):
         return self.Product_Name
@@ -60,5 +66,3 @@ class ShippingAddress(models.Model):
     state = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
     date_added = models.DateTimeField(auto_now_add=True)
-=======
->>>>>>> bd916221408963f1925b220ac739be26d2903adc

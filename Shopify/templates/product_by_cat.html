@@ -8,7 +8,19 @@
         <div class="product-image-wrapper">
             <div class="single-products">
                     <div class="productinfo text-center">
-                        <img src="{{pro.image.url}}" alt="" />
+                        <div href="" class="image_size"><img class="img" src="{{pro.image.url}}" alt="" /></div>
+                        <style>
+                            .image_size{
+                                position: relative;
+                                height: 250px;
+                                width: 250px;
+                            }
+                            .img{
+                                position: absolute;
+                                left:0;
+                                bottom: 0;
+                            }
+                        </style>
                         <h2>{{pro.price}}</h2>
                         <p>{{pro.Product_Name}}</p>
                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>

@@ -5,7 +5,7 @@
 	<div class="product-details"><!--product-details-->
 		<div class="col-sm-5">
 			<div class="view-product">
-				<img src=Product.img.url alt="" />
+				<a href="{{Product.image.url}}"><img src={{Product.image.url}} alt="" /></a>
 			</div>
 			<div id="similar-product" class="carousel slide" data-ride="carousel">
 				
@@ -41,7 +41,13 @@
 		</div>
 		<div class="col-sm-7">
 			<div class="product-information"><!--/product-information-->
-				<img src="images/product-details/new.jpg" class="newarrival" alt="" />
+				<a href="{{Product.image.url}}"><img class="img_size" src="{{Product.image.url}}" alt=""></a>
+				<style>
+					.img_size{
+						height: 50px;
+						width: auto
+					}
+				</style>
 				<h2>{{Product.Product_Name}}</h2>
 				<p>Web ID: {{Product.id}}</p>
 				<img src="images/product-details/rating.png" alt="" />

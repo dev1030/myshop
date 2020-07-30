@@ -5,7 +5,7 @@ for(var i = 0; i< updateBtns.length; i++){
     updateBtns[i].addEventListener('click',function(){
         var ProductId = this.dataset.product
         var action = this.dataset.action
-        console.log('ProductId',ProductId,'action',action)
+        console.log('Product Id',ProductId,'Action',action)
         console.log('USER:',user)
         if(user == 'AnonymousUser'){
             console.log('not logged in')

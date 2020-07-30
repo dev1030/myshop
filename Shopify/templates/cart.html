@@ -112,7 +112,11 @@
 								<li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
 								<li><a href="../checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 								<li><a href="cart.html" class="active"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-								<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+								{% if user.is_authenticated%}
+								<li><a href="../../logout">Log out<i class="fa fa-lock"></i></a></li>
+								{% else %} 
+								<li><a href="../../login_page"><i class="fa fa-lock"></i>Login</a></li>
+								{% endif %} 
 							</ul>
 						</div>
 					</div>
@@ -138,10 +142,14 @@
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Products</a></li>
-										<li><a href="product-details.html">Product Details</a></li> 
-										<li><a href="checkout.html">Checkout</a></li> 
-										<li><a href="cart.html" class="active">Cart</a></li> 
-										<li><a href="login.html">Login</a></li> 
+										<li><a href="../../product-details">Product Details</a></li> 
+										<li><a href="../../checkout">Checkout</a></li> 
+										<li><a href="../../cart" class="active">Cart</a></li> 
+										{% if user.is_authenticated%}
+										<li><a href="../../logout"> Log out</a></li>
+										{% else %} 
+										<li><a href="../../login_page"> Login</a></li>
+										{% endif %} 
                                     </ul>
                                 </li> 
 								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
@@ -169,7 +177,7 @@
 		<div class="container">
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
+				  <li><a href="/">Home</a></li>
 				  <li class="active">Shopping Cart</li>
 				</ol>
 			</div>
@@ -292,8 +300,7 @@
 							<li>Shipping Cost <span>Free</span></li>
 							<li>Total <span>{{order.get_cart_total}}</span></li>
 						</ul>
-							<a class="btn btn-default update" href="">Update</a>
-							<a class="btn btn-default check_out" href="">Check Out</a>
+							<a class="btn btn-default check_out" href="../../checkout">Check Out</a>
 					</div>
 				</div>
 			</div>
