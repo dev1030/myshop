@@ -41,12 +41,8 @@ def Product_details(request, pk):
     sctgs = sub_categorie.objects.all()
     action = request.GET.get("action", None)
     Product = Products.objects.get(id=pk)
-<<<<<<< HEAD
     brands = brand.objects.all()
     return render(request, 'product-details.html', {'ctgs': ctgs, 'sctgs': sctgs, 'Product': Product, 'brands':brands})
-=======
-    return render(request, 'product-details.html', {'ctgs': ctgs, 'sctgs': sctgs, 'Product': Product})
->>>>>>> 3c1fdefb67a7a8b958a6369e76672cf46e945534
 
 
 
