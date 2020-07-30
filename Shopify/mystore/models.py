@@ -30,7 +30,10 @@ class Products(models.Model):
     Description = models.TextField()
     ctg = models.ForeignKey(categorie, on_delete=models.CASCADE, blank=False, default=1)
     sub_category = models.ForeignKey(sub_categorie, on_delete=models.CASCADE, null=True, blank=True)
+<<<<<<< HEAD
     brand_name = models.ForeignKey(brand, on_delete=models.CASCADE, null= True, blank = True)
+=======
+>>>>>>> 3c1fdefb67a7a8b958a6369e76672cf46e945534
 
     def __str__(self):
         return self.Product_Name
